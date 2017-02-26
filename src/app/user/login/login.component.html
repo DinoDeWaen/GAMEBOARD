@@ -1,0 +1,10 @@
+<form [formGroup]="loginForm" (ngSubmit)="doLogin($event)">
+  <ngl-form-element label="email" [error]="hasError ? error : null" class="slds-m-top--small">
+  <input nglFormControl formControlName="email" type="email" placeholder="Your email" [required]="required">
+</ngl-form-element>
+<ngl-form-element label="password" [error]="hasError ? error : null" class="slds-m-top--small">
+  <input nglFormControl formControlName="password" type="password" placeholder="Your password" [required]="required">
+</ngl-form-element>
+
+  <button type="submit" nglButton="neutral">Log in</button>
+</form>
