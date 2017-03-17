@@ -23,23 +23,22 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
     }
-    
-    doLogin(event) {
-        // Show the value of the form
-        let formData = this.loginForm.value;
-        // { email: 'blah@blah.net', password: 'imnottelling1' }
 
-        // Or, grab the value of one control:
+    login(event) {
+        console.log("login")
         let email = this.loginForm.controls["email"].value;
         let password = this.loginForm.controls["password"].value;
-        console.log(email);
-        console.log(password)
-        this.userService.login(email, password).then((res) => {
-          console.log(res);
-          if (res)
-            this.router.navigateByUrl("/");
-        });
+        this.userService.login(email, password)
+            .subscribe(user => {
+                console.log("goto root")
+                this.router.navigateByUrl("/");
+            }, error => {
+                console.log("login")
+                this.error = error;
+            },()=>{console.log("finished")});
+    }
 
-
+    cancel(){
+      this.router.navigateByUrl("/");
     }
 }

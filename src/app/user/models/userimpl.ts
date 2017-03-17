@@ -9,6 +9,9 @@ export class UserImp implements User{
 
 
     constructor(authData: any){
-        this.email = authData.password.email;
+        console.log(authData);
+        console.log(authData.auth);
+        this.email = authData.auth.email;
+        console.log(this);
     }
 }

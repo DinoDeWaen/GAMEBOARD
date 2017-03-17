@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromPromise';
 import { AngularFire } from 'angularfire2';
 import { UserImp } from '../models/userimpl'
 
@@ -22,22 +23,45 @@ export class UserService {
         }
         });
   }
-
-    signUp(email: string, password: string) {
-        var creds: any = { email: email, password: password };
-        this.af.auth.createUser(creds);
-    }
-    login(email: string, password: string): Promise<boolean> {
-        var creds: any = {email: email, password: password};
-        var res: Promise<boolean> = new Promise((resolve, reject) => {
-        this.auth.login(creds).then(result => {
-            resolve(result);
-        })
+      getUser():Observable  <UserImp>{
+        return new Observable(observable => {
+            this.auth.subscribe(authData => {
+                let user;
+                console.log(authData);
+                if (authData) {
+                    user = new UserImp(authData);
+                }
+                observable.next(user);
+            });
         });
-        return res;
     }
 
-    public logout() {
-      return this.auth.signOut();
+    login(email:string, password:string):Observable <UserImp>{
+        var creds: any = {email: email, password: password};
+        var res: Promise<UserImp> = new Promise((resolve, reject) => {
+        this.auth.login(creds).then(
+            result => {
+                resolve(new UserImp(result));
+             })
+        });
+        return Observable.fromPromise(res);
+    }
+
+    register(email: string, password: string): Observable<UserImp>{
+        var creds: any = { email: email, password: password };
+        var res: Promise<UserImp> = new Promise((resolve, reject) => {
+        this.af.auth.createUser(creds).then(
+            result => {
+             resolve(new UserImp(result));
+            })
+        });
+        return Observable.fromPromise(res);
+    }
+
+    public logout() :Observable <UserImp>{
+        return new Observable(observable => {
+            this.auth.logout()
+            observable.next();
+            });
     }
 }

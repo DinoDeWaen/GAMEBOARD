@@ -30,22 +30,22 @@
         </a>
       </li>
       <li class="slds-context-bar__item">
-        <a [routerLink]="['/login']" class="slds-context-bar__label-action" title="Login">
+        <a *ngIf="!user"  [routerLink]="['/login']" class="slds-context-bar__label-action" title="Login">
           <span class="slds-truncate">Login</span>
         </a>
       </li>  
       <li class="slds-context-bar__item">
-        <a [routerLink]="['/registration']" class="slds-context-bar__label-action" title="Registration">
+        <a *ngIf="!user"  [routerLink]="['/registration']" class="slds-context-bar__label-action" title="Registration">
           <span class="slds-truncate">Registration</span>
         </a>
       </li>  
       <li class="slds-context-bar__item">
-        <a class="slds-context-bar__label-action" title="user email">
-          <span class="slds-truncate"> user.email</span>
+        <a *ngIf="user" class="slds-context-bar__label-action" title="user email">
+          <span class="slds-truncate">{{user.email}}</span>
         </a>
       </li>  
       <li class="slds-context-bar__item">
-        <a class="slds-context-bar__label-action" title="Logout" (click)="logout()">
+        <a  *ngIf="user" class="slds-context-bar__label-action" title="Logout" (click)="logout()">
           <span class="slds-truncate">Logout</span>
         </a>
       </li>    
