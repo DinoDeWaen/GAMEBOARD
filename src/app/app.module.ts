@@ -10,11 +10,11 @@ import { AngularFireModule,
          AuthProviders  } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
-import { GamesComponent } from './games/games/games.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegistrationComponent } from './user/registration/registration.component';
+import { HeaderComponent } from './common/header.component';
+import { FooterComponent } from './common/footer.component';
+import { GamesComponent } from './games/games.component';
+import { LoginComponent } from './user/login.component';
+import { RegistrationComponent } from './user/registration.component';
 
 import { UserService } from './user/services/user.service';
 

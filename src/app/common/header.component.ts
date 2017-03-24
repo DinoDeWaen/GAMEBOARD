@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "../../user/services/user.service";
-import { User } from "../../user/models/user";
+import { UserService } from "../user/services/user.service";
+import { User } from "../user/models/user";
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
   providers : [UserService]
 })
 export class HeaderComponent implements OnInit {

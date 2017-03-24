@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GamesComponent } from './games/games/games.component';
-import { LoginComponent } from './user/login/login.component';
-import { RegistrationComponent } from './user/registration/registration.component';
+import { GamesComponent } from './games/games.component';
+import { LoginComponent } from './user/login.component';
+import { RegistrationComponent } from './user/registration.component';
 
 const routes: Routes = [
   {
